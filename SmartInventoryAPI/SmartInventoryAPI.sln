@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.14.36414.22 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartInventory.API", "SmartInventory.API.csproj", "{BA9FC9FC-C7D7-212B-4475-F238C724F302}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SmartInventoryAPI", "SmartInventoryAPI\SmartInventoryAPI.csproj", "{163A15EB-0F1E-4DF1-891B-2958CE041322}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BA9FC9FC-C7D7-212B-4475-F238C724F302}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BA9FC9FC-C7D7-212B-4475-F238C724F302}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BA9FC9FC-C7D7-212B-4475-F238C724F302}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BA9FC9FC-C7D7-212B-4475-F238C724F302}.Release|Any CPU.Build.0 = Release|Any CPU
+		{163A15EB-0F1E-4DF1-891B-2958CE041322}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{163A15EB-0F1E-4DF1-891B-2958CE041322}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{163A15EB-0F1E-4DF1-891B-2958CE041322}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{163A15EB-0F1E-4DF1-891B-2958CE041322}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {66256848-E70E-49F0-964B-430AAAECC19F}
+		SolutionGuid = {4A6B6121-2778-42AD-B4F3-C188CEB65D9B}
 	EndGlobalSection
 EndGlobal

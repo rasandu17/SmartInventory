@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SmartInventory.API.Models;
+using SmartInventoryAPI.Models;
 
-namespace SmartInventory.API.Data
+namespace SmartInventoryAPI.Data
 {
     public class AppDbContext : DbContext
     {
@@ -10,7 +10,5 @@ namespace SmartInventory.API.Data
         public DbSet<User> Users { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Sale> Sales { get; set; }
-        public DbSet<SaleItem> SaleItems { get; set; }
     }
 }
-
