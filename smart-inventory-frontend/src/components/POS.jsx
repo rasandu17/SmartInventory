@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import api from "../api/api";
+import { jsPDF } from "jspdf";
 
 export default function POS() {
   const [products, setProducts] = useState([]);
   const [cart, setCart] = useState([]);
+  const [lastSale, setLastSale] = useState(null);
 
   useEffect(() => {
     api.get("/products").then((res) => setProducts(res.data));
@@ -28,7 +30,7 @@ export default function POS() {
         .map((item) =>
           item.id === id ? { ...item, quantity: Math.max(1, item.quantity + change) } : item
         )
-        .filter((item) => item.quantity > 0) // remove if qty goes to 0
+        .filter((item) => item.quantity > 0)
     );
   };
 
@@ -40,18 +42,50 @@ export default function POS() {
 
   const handleCheckout = async () => {
     try {
+      let salesData = [];
       for (const item of cart) {
-        await api.post("/sales", {
+        const res = await api.post("/sales", {
           productId: item.id,
           quantity: item.quantity,
-          soldBy: 2 // staff ID (later replace with logged-in user ID)
+          soldBy: 2, // replace with logged-in staff ID
         });
+        salesData.push(res.data);
       }
+
+      setLastSale({ cart, total, date: new Date() });
+      generateReceipt(cart, total);
+
       alert("Sale completed!");
       setCart([]);
     } catch (err) {
       alert("Error processing sale");
     }
+  };
+
+  const generateReceipt = (cart, total) => {
+    const doc = new jsPDF();
+    doc.setFontSize(14);
+    doc.text("Smart Inventory & Billing System", 20, 20);
+    doc.setFontSize(10);
+    doc.text(`Date: ${new Date().toLocaleString()}`, 20, 30);
+
+    let y = 40;
+    doc.text("Items:", 20, y);
+    y += 10;
+
+    cart.forEach((item) => {
+      doc.text(
+        `${item.name} x${item.quantity} - $${(item.price * item.quantity).toFixed(2)}`,
+        20,
+        y
+      );
+      y += 10;
+    });
+
+    doc.text(`Total: $${total.toFixed(2)}`, 20, y + 10);
+
+    // Save PDF
+    doc.save("receipt.pdf");
   };
 
   return (
@@ -133,7 +167,7 @@ export default function POS() {
             disabled={cart.length === 0}
             className="bg-blue-500 text-white px-4 py-2 rounded disabled:opacity-50"
           >
-            Checkout
+            Checkout & Print Receipt
           </button>
         </div>
       </div>
